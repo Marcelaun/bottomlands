@@ -14,15 +14,19 @@ import inputs.MouseInputs;
 
 import static utils.Constants.PlayerConstants.*;
 import static utils.Constants.Directions.*;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
 
 public class GamePanel extends JPanel {
 	
 	private MouseInputs mouseInputs;
+	private Game game;
 	
 	
-	public GamePanel() {
+	public GamePanel(Game game) {
 		
 		mouseInputs = new MouseInputs(this);
+		this.game = game;
 		
 		
 		setPanelSize();
@@ -36,9 +40,10 @@ public class GamePanel extends JPanel {
 	
 
 	private void setPanelSize() {
-		Dimension size = new Dimension(1280, 800);
+		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
 		setMinimumSize(size);
 		setPreferredSize(size);
+		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
 		
 	}
 
@@ -54,10 +59,14 @@ public class GamePanel extends JPanel {
 		
 		//g.setColor(Color.decode("#B4392B"));
 		
+		game.render(g);
 		
 		
 	}
-
+	
+	public Game getGame() {
+		return game;
+	}
 	
 	
 
